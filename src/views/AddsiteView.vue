@@ -49,7 +49,7 @@
                 </form>
     
               </div>
-            </div> <!-- / .row -->
+            </div>
           </div>
       </div>
     </div>
@@ -58,7 +58,6 @@
   <script>
   import Navbar from '@/components/Navbar'
   import {api} from '@/boot/api'
-  import {getCookie} from '@/boot/utils'
 
   export default {
     name: 'AddsiteView',
@@ -81,7 +80,7 @@
           },
           withCredentials: true
         }).then(response => {
-          this.$router.push('/')
+          this.$router.push('/confirmsite')
         })
       }
     },

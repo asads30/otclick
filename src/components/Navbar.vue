@@ -51,10 +51,10 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item d-md-none">
-                            <a class="nav-link" data-bs-toggle="offcanvas" href="#sidebarOffcanvasActivity" aria-contrtols="sidebarOffcanvasActivity">
-                                <span class="fe fe-bell"></span> Notifications
-                            </a>
+                        <li class="nav-item">
+                            <router-link to="/confirmsite" class="nav-link">
+                                <i class="fe fe-help-circle"></i> Как подключить?
+                            </router-link>
                         </li>
                     </ul>
                     <div class="mt-auto"></div>
@@ -70,7 +70,7 @@
                         <div class="dropup">
                             <a href="#" id="sidebarIconCopy" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="avatar avatar-sm avatar-online">
-                                    <img src="@/assets/img/avatars/profiles/avatar-1.jpg" class="avatar-img rounded-circle" alt="...">
+                                    <img src="@/assets/img/user.png" class="avatar-img rounded-circle" alt="...">
                                 </div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="sidebarIconCopy">

@@ -1,8 +1,9 @@
 import store from '@/store/index'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import AddsiteView from '../views/AddsiteView.vue'
+import ConfirmsiteView from '../views/ConfirmsiteView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import SiteItemView from '../views/SiteItemView.vue'
@@ -24,6 +25,11 @@ const routes = [
     component: AddsiteView
   },
   {
+    path: '/confirmsite',
+    name: 'confirmsite',
+    component: ConfirmsiteView
+  },
+  {
     path: '/login',
     name: 'login',
     component: LoginView
@@ -41,7 +47,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
 

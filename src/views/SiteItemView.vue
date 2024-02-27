@@ -33,32 +33,28 @@
                               <table class="table table-sm table-nowrap card-table">
                                 <thead>
                                   <tr>
-                                    <th>
-                                      <a href="#" class="text-body-secondary list-sort" data-sort="goal-project">ID</a>
+                                    <th scope="col">
+                                      <span class="text-body-secondary" data-sort="goal-project">ID</span>
                                     </th>
-                                    <th>
-                                      <a href="#" class="text-body-secondary list-sort" data-sort="goal-status">Текст</a>
+                                    <th scope="col">
+                                      <span class="text-body-secondary" data-sort="goal-status">Оценка</span>
                                     </th>
-                                    <th>
-                                      <a href="#" class="text-body-secondary list-sort" data-sort="goal-progress">Рейтинг</a>
+                                    <th scope="col">
+                                      <span class="text-body-secondary" data-sort="goal-progress">Путь</span>
                                     </th>
-                                    <th>
-                                      <a href="#" class="text-body-secondary list-sort" data-sort="goal-date">Путь</a>
+                                    <th scope="col">
+                                      <span class="text-body-secondary" data-sort="goal-date">Дата</span>
                                     </th>
-                                    <th>Дата</th>
+                                    <th scope="col">Текст</th>
                                   </tr>
                                 </thead>
                                 <tbody class="list">
                                   <tr v-for="item in reviews" :key="item.ID">
-                                    <td class="list-item">{{ item.ID }}</td>
-                                    <td class="list-item">{{ item.Text }}</td>
-                                    <td class="list-item">{{ item.Rate }}</td>
-                                    <td class="list-item">
-                                        {{ item.Path }}
-                                    </td>
-                                    <td class="list-item">
-                                      {{ item.CreatedAt }}
-                                    </td>
+                                    <td class="list-item" width="5%">{{ item.ID }}</td>
+                                    <td class="list-item" width="5%">{{ item.Rate }}</td>
+                                    <td class="list-item" width="5%">{{ item.Path }}</td>
+                                    <td class="list-item" width="10%">{{ formatDate(item.CreatedAt) }}</td>
+                                    <td class="list-item" width="75%">{{ item.Text }}</td>
                                   </tr>
                                 </tbody>
                               </table>
@@ -105,6 +101,12 @@ export default {
         }).then(result => {
             this.reviews = result.data
         }) 
+    },
+    methods: {
+      formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleString();
+      }
     },
 }
 </script>
