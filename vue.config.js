@@ -4,7 +4,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '/api': {
-        target: 'https://otclick.io/',
+        target: 'https://otclick.io/api/v1/',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

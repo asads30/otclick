@@ -88,7 +88,7 @@ import {api} from '@/boot/api'
 export default {
     name: 'Navbar',
     mounted() {
-        api.get('/admin/sites', {
+        api.get('/user-admin/sites', {
             headers: {
                 'Cookie': document.cookie
             },

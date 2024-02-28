@@ -91,7 +91,7 @@ export default {
         const data = {
             site_id: Number(this.$route.params.id)
         };
-        api.post('/admin/reviews', data, {
+        api.post('/user-admin/reviews', data, {
             headers: {
                 "Accept": "/",
                 "Cache-Control": "no-cache",

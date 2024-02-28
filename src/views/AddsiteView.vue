@@ -74,7 +74,7 @@
         const data = {
           domain: this.domain
         }
-        api.post('/admin/site', data, {
+        api.post('/user-admin/site', data, {
           headers: {
             'Cookie': document.cookie
           },
