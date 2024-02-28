@@ -34,6 +34,41 @@
                 </router-link>
               </div>
             </div>
+            <div class="card">
+              <div class="card-header">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h4 class="card-header-title">Сайты</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive mb-0">
+                <table class="table table-sm table-nowrap card-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">
+                        <span class="text-body-secondary">ID</span>
+                      </th>
+                      <th scope="col">
+                        <span class="text-body-secondary">Домен</span>
+                      </th>
+                      <th scope="col">
+                        <span class="text-body-secondary">Дата</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="list">
+                    <tr v-for="item in sites" :key="item.ID">
+                      <td class="list-item">{{ item.ID }}</td>
+                      <td class="list-item">
+                        <router-link :to="'/site/' + item.ID">{{ item.Domains[0].Domain }}</router-link>
+                      </td>
+                      <td class="list-item">{{ item.CreatedAt }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
           </div>
         </div>
       </div>
@@ -55,6 +90,10 @@ export default {
     Navbar
   },
   computed: {
+    sites(){
+      let sites = this.$store.state.sites;
+      return sites
+    },
     getSites(){
       let sites = this.$store.state.sites;
       if(sites){

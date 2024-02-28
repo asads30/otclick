@@ -62,11 +62,6 @@
                         <router-link to="/addsite" class="btn btn-primary w-100">Добавить сайт</router-link>
                     </div>
                     <div class="navbar-user d-none d-md-flex" id="sidebarUser">
-                        <!-- <a class="navbar-user-link" data-bs-toggle="offcanvas" href="#sidebarOffcanvasActivity" aria-controls="sidebarOffcanvasActivity">
-                            <span class="icon">
-                                <i class="fe fe-bell"></i>
-                            </span>
-                        </a> -->
                         <div class="dropup">
                             <a href="#" id="sidebarIconCopy" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="avatar avatar-sm avatar-online">
@@ -88,9 +83,31 @@
 
 <script>
 import {mapGetters} from 'vuex'
+import {api} from '@/boot/api'
 
 export default {
     name: 'Navbar',
+    mounted() {
+        api.get('/admin/sites', {
+            headers: {
+                'Cookie': document.cookie
+            },
+            withCredentials: true
+        }).then((result) => {
+            this.$store.commit('setSites', result.data);
+        }).catch((err) => {
+            if(err.response.status == 403){
+                localStorage.clear();
+                sessionStorage.clear();
+                this.$router.push('/login');
+            }
+            if(err.response.status == 401){
+                localStorage.clear();
+                sessionStorage.clear();
+                this.$router.push('/login');
+            }
+        });
+    },
     computed: {
         ...mapGetters([
             'getSites'
