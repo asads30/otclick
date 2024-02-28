@@ -63,7 +63,7 @@
                       <td class="list-item">
                         <router-link :to="'/site/' + item.ID">{{ item.Domains[0].Domain }}</router-link>
                       </td>
-                      <td class="list-item">{{ item.CreatedAt }}</td>
+                      <td class="list-item">{{ formatDate(item.CreatedAt) }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -101,6 +101,12 @@ export default {
       } else{
         return false
       }
+    }
+  },
+  methods: {
+    formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleString();
     }
   },
 }
