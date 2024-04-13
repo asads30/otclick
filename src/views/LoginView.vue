@@ -53,7 +53,9 @@ export default {
                 username: this.username,
                 password: this.password
             }
-            api.post('login', data, {withCredentials: true}).then(response => {
+            api.post('login', data, {
+              withCredentials: true
+            }).then(response => {
               try {
                 const token = getCookie('access_token');
                 this.$store.commit('setToken', token);

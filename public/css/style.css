@@ -1,0 +1,252 @@
+/**
+ * Star Rating
+ * @version: 4.3.0
+ * @author: Paul Ryley (http://geminilabs.io)
+ * @url: https://github.com/pryley/star-rating.js
+ * @license: MIT
+ */
+ :root{--gl-star-color:#fdd835;--gl-star-color-inactive:#dcdce6;--gl-star-empty:url(../img/star-empty.svg);--gl-star-full:url(../img/star-full.svg);--gl-star-size:24px;--gl-tooltip-border-radius:4px;--gl-tooltip-font-size:0.875rem;--gl-tooltip-font-weight:400;--gl-tooltip-line-height:1;--gl-tooltip-margin:12px;--gl-tooltip-padding:.5em 1em;--gl-tooltip-size:6px}[data-star-rating]>select{-webkit-clip-path:circle(1px at 0 0)!important;clip-path:circle(1px at 0 0)!important;clip:rect(1px,1px,1px,1px)!important;height:1px!important;margin:0!important;overflow:hidden!important;padding:0!important;position:absolute!important;top:0!important;visibility:visible!important;white-space:nowrap!important;width:1px!important;-webkit-appearance:none;-moz-appearance:none;appearance:none;pointer-events:none}[data-star-rating]>select:after,[data-star-rating]>select:before{display:none!important}[data-star-rating].gl-star-rating--ltr>select{left:0!important}[data-star-rating].gl-star-rating--rtl>select{right:0!important}[data-star-rating]{align-items:center;display:flex;position:relative}.gl-star-rating:not([data-star-rating]) .gl-star-rating--stars{display:none}[data-star-rating] .gl-star-rating--stars{align-items:center;cursor:pointer;display:flex;position:relative}[data-star-rating]>select:focus+.gl-star-rating--stars span:first-child:before{box-shadow:0 0 0 3px -moz-mac-focusring;box-shadow:0 0 0 3px -webkit-focus-ring-color;box-shadow:0 0 0 3px Highlight;content:"";display:block;height:100%;outline:1px solid transparent;pointer-events:none;position:absolute;width:100%}[data-star-rating] select[disabled]+.gl-star-rating--stars{cursor:default}[data-star-rating] .gl-star-rating--stars>span{display:flex;height:24px;height:var(--gl-star-size);margin:0;width:24px;width:var(--gl-star-size)}[data-star-rating] .gl-star-rating--stars[aria-label]:after,[data-star-rating] .gl-star-rating--stars[aria-label]:before{-webkit-backface-visibility:hidden;backface-visibility:hidden;bottom:auto;box-sizing:border-box;left:100%;pointer-events:none;position:absolute;top:50%;opacity:.9;transform-origin:top;transform:translate3d(0,-50%,0);white-space:nowrap;z-index:10}[data-star-rating] .gl-star-rating--stars[aria-label]:before{background-size:100% auto!important;background-position:50%!important;background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 31'%3E%3Cpath fill='%23111' d='M12.002 31C12.002 25 0 19.838 0 15.5 0 11.24 12 6 12 0l.002 31z'/%3E%3C/svg%3E") no-repeat;content:"";height:18px;margin-bottom:0;margin-left:6px;margin-left:var(--gl-tooltip-size);width:6px;width:var(--gl-tooltip-size)}[data-star-rating] .gl-star-rating--stars[aria-label]:after{background:#111;border-radius:4px;border-radius:var(--gl-tooltip-border-radius);color:#fff;content:attr(aria-label);font-size:.875rem;font-size:var(--gl-tooltip-font-size);font-weight:400;margin-left:12px;margin-left:var(--gl-tooltip-margin);padding:.5em 1em;padding:var(--gl-tooltip-padding);text-transform:none}[data-star-rating].gl-star-rating--rtl .gl-star-rating--stars[aria-label]:after,[data-star-rating].gl-star-rating--rtl .gl-star-rating--stars[aria-label]:before{left:auto;right:100%}[data-star-rating].gl-star-rating--rtl .gl-star-rating--stars[aria-label]:before{transform:scaleX(-1) translate3d(0,-50%,0);margin-left:0;margin-right:6px;margin-right:var(--gl-tooltip-size)}[data-star-rating].gl-star-rating--rtl .gl-star-rating--stars[aria-label]:after{margin-left:0;margin-right:12px;margin-right:var(--gl-tooltip-margin)}[data-star-rating] svg{height:100%;width:100%}[data-star-rating] .gl-star-half{fill:none;stroke:none}[data-star-rating] .gl-star-full{fill:#dcdce6;fill:var(--gl-star-color-inactive);stroke:#dcdce6;stroke:var(--gl-star-color-inactive);transition:fill .15s ease-in-out,stroke .15s ease-in-out}[data-star-rating] .gl-active .gl-star-full{fill:#fdd835;fill:var(--gl-star-color);stroke:#fdd835;stroke:var(--gl-star-color)}.gl-star-rating--stars[class*=" s"]>span{background-image:url(../img/star-empty.svg)!important;background-image:var(--gl-star-empty)!important;background-position:50%;background-repeat:no-repeat;background-size:90%}.gl-star-rating--stars[class*=" s"]>span.gl-active,.gl-star-rating--stars[class*=" s"]>span.gl-active.gl-selected{background-image:url(../img/star-full.svg)!important;background-image:var(--gl-star-full)!important}
+
+ @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --gl-star-empty: url(../images/star-empty.svg) !important;
+    --gl-star-full: url(../images/star-full.svg) !important;
+    --gl-star-size: 42px;
+}
+
+.body{
+    height: 100vh;
+    width: 100vw;
+}
+
+.like-btn{
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: none;
+    font-family: "Raleway", sans-serif !important;
+    z-index: 1000;
+}
+
+.like-btn>img{
+    width: 48px;
+    height: auto;
+}
+
+.like{
+    box-shadow: 0 8px 24px 0 rgba(30,34,46,.12), 0 4px 8px 0 rgba(30,34,46,.04);
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 416px;
+    padding: 32px;
+    border-radius: 16px;
+    transition: all 0.3s;
+    background: #fff;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-40px);
+    font-family: "Raleway", sans-serif !important;
+    z-index: 1000;
+}
+
+.like.active{
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+    transition: 350ms opacity ease-in-out;
+}
+
+.like-close{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: none;
+    padding: 0;
+    border: 0;
+}
+
+.like-close>svg{
+    width: 24px;
+    height: 24px;
+}
+
+.like-close>svg path{
+    fill: #7f8499;
+}
+
+.like-close:hover svg path{
+    fill: #000;
+}
+
+.like-title{
+    font-size: 24px;
+    text-align: center;
+    font-weight: 500;
+    color: #152E4D;
+    line-height: 24px;
+    margin-bottom: 20px;
+}
+
+.like-des{
+    color: #152E4D;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.like-rating{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.like-bottom{
+    padding-top: 10px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-40px);
+    transition: all 0.3s;
+    display: none;
+}
+
+.like-bottom.active{
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+    transition: 350ms opacity ease-in-out;
+    display: block;
+}
+
+.like-subtitle{
+    font-size: 18px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #1e222e;
+}
+
+.like-textarea{
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    min-height: 120px;
+    padding: 15px;
+    border-radius: 16px;
+    height: 110px;
+    color: #1e222e;
+    border: 1px solid #ccd0df;
+    width: calc(100% - 32px);
+    margin-bottom: 10px;
+    transition: 0.5s;
+    background: #fff;
+}
+
+.like-textarea:focus{
+    border: 1px solid #3356d7;
+    transition: 0.5s;
+    outline: 0;
+}
+
+.like-textarea::placeholder,
+.like-textarea:-ms-input-placeholder,
+.like-textarea:-moz-placeholder{
+    color: #BABFC5;
+}
+
+.like-button>button{
+    width: 100%;
+    background: #476bf0;
+    height: 48px;
+    line-height: 48px;
+    color: #fff;
+    border: 0;
+    font-size: 18px;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+.like-button>button:hover{
+    background: #3356d7;
+}
+
+.like-success{
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-40px);
+    transition: all 0.3s;
+    display: none;
+}
+
+.like-success.active{
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+    transition: 350ms opacity ease-in-out;
+    display: block;
+}
+
+.like-success-img{
+    margin-bottom: 10px;
+}
+
+.like-success-title{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+    color: #152E4D;
+    line-height: 24px;
+}
+
+.like-success-des{
+    color: #152E4D;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.like-success-btn{
+    width: calc(100% - 12px);
+    background: #476bf0;
+    height: 48px;
+    line-height: 48px;
+    color: #fff;
+    border: 0;
+    font-size: 18px;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+.like-success-btn:hover{
+    background: #3356d7;
+}
+
+@media screen and (max-width: 767px) {
+    .like{
+        width: calc(100% - 64px);
+        bottom: 0;
+        right: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .like-button{
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .like-button>button{
+        width: max-content;
+        padding: 0 70px;
+    }
+}

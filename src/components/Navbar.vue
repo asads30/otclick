@@ -12,25 +12,16 @@
                     <div class="dropdown">
                         <a href="#" id="sidebarIcon" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="avatar avatar-sm avatar-online">
-                                <img src="@/assets/img/avatars/profiles/avatar-1.jpg" class="avatar-img rounded-circle" alt="...">
+                                <img src="@/assets/img/user.png" class="avatar-img rounded-circle" alt="...">
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sidebarIcon">
-                            <router-link to="/profile" class="dropdown-item">Настройки профиля</router-link>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item">Выйти</a>
                         </div>
                     </div>
                 </div>
                 <div class="collapse navbar-collapse" id="sidebarCollapse">
-                    <form class="mt-4 mb-3 d-md-none">
-                        <div class="input-group input-group-rounded input-group-merge input-group-reverse">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                            <div class="input-group-text">
-                                <span class="fe fe-search"></span>
-                            </div>
-                        </div>
-                    </form>
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <router-link to="/" class="nav-link">
@@ -59,7 +50,7 @@
                     </ul>
                     <div class="mt-auto"></div>
                     <div class="addsite pb-3">
-                        <router-link to="/addsite" class="btn btn-primary w-100">Добавить сайт</router-link>
+                        <router-link to="/addwidget" class="btn btn-primary w-100">Добавить виджет</router-link>
                     </div>
                     <div class="navbar-user d-none d-md-flex" id="sidebarUser">
                         <div class="dropup">
@@ -69,7 +60,6 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="sidebarIconCopy">
-                                <router-link to="/profile" class="dropdown-item">Настройки профиля</router-link>
                                 <hr class="dropdown-divider">
                                 <button type="button" @click="logout" class="dropdown-item">Выйти</button>
                             </div>
@@ -96,6 +86,11 @@ export default {
         }).then((result) => {
             this.$store.commit('setSites', result.data);
         }).catch((err) => {
+            if(err){
+                localStorage.clear();
+                sessionStorage.clear();
+                this.$router.push('/login');
+            }
             if(err.response.status == 403){
                 localStorage.clear();
                 sessionStorage.clear();
@@ -122,3 +117,14 @@ export default {
     },
 }
 </script>
+
+<style lang="scss" scoped>
+    .navbar-vertical.navbar-expand-md .navbar-brand-img{
+        max-height: 5rem;
+    }
+    @media screen and (max-width: 767px) {
+        .navbar-brand-img, .navbar-brand>img{
+            max-height: 3rem;
+        }
+    }
+</style>

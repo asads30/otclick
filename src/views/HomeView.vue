@@ -15,7 +15,7 @@
                 </h1>
               </div>
               <div class="col-auto">
-                <router-link to="/addsite" class="btn btn-primary lift">Добавить сайт</router-link>
+                <router-link to="/addwidget" class="btn btn-primary lift">Добавить виджет</router-link>
               </div>
             </div>
           </div>
@@ -29,8 +29,8 @@
                 <img src="@/assets/img/illustrations/scale.svg" alt="..." class="img-fluid" style="max-width: 182px;">
                 <h1>Тут еще нет вашего сайта...</h1>
                 <p class="text-body-secondary">Добавьте свой сайт чтобы начать пользоваться сервисом.</p>
-                <router-link to="/addsite" class="btn btn-primary">
-                  Добавить сайт
+                <router-link to="/addwidget" class="btn btn-primary">
+                  Добавить виджет
                 </router-link>
               </div>
             </div>

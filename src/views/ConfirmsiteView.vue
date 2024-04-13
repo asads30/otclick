@@ -34,7 +34,7 @@
                     <p>3) Скопировать адрес скрипта в поле ниже и вставить его в код вашего сайта (внутри тега BODY)</p>
                     <div class="card">
                         <div class="card-body bg-dark">
-                            <pre class="highlight html bg-dark mb-0 hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&nbsp;<span class="hljs-attr">src</span>=<span class="hljs-string">"https://nout.uz/otclick/js/script.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></pre>
+                            <pre class="highlight html bg-dark mb-0 hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://otclick.io/js/scripts.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></pre>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@
                         Отзывы
                       </h6>
                       <h1 class="header-title">
-                        {{ site.Domains[0].Domain }}
+                        {{ site?.Domains[0]?.Domain }}
                       </h1>
                     </div>
                   </div>
